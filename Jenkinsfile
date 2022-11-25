@@ -1,40 +1,25 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('Example Build') {
-            agent { docker 'maven:3.8.6-adoptopenjdk-11' }
-            steps {
-                echo 'Hello, Maven'
-                sh 'mvn --version'
+        stage('Example Username/Password') {
+            environment {
+                SERVICE_CREDS = credentials('my-predefined-username-password')
             }
-        } pipeline {
-    agent none
-    stages {
-        stage('Example Build') {
-            agent { docker 'maven:3.8.6-adoptopenjdk-11' }
             steps {
-                echo 'Hello, Maven'
-                sh 'mvn --version'
+                sh 'echo "Service user is $SERVICE_CREDS_USR"'
+                sh 'echo "Service password is $SERVICE_CREDS_PSW"'
+                sh 'curl -u $SERVICE_CREDS https://myservice.example.com'
             }
         }
-        stage('Example Test') {
-            agent { docker 'openjdk:8-jre' }
+        stage('Example SSH Username with private key') {
+            environment {
+                SSH_CREDS = credentials('my-predefined-ssh-creds')
+            }
             steps {
-                echo 'Hello, JDK'
-                sh 'java -version'
+                sh 'echo "SSH private key is located at $SSH_CREDS"'
+                sh 'echo "SSH user is $SSH_CREDS_USR"'
+                sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
             }
         }
     }
 }
-        stage('Example Test') {
-            agent { docker 'openjdk:8-jre' }
-            steps {
-                echo 'Hello, JDK'
-                sh 'java -version'
-            }
-        }
-    }
-}
-
-
-
