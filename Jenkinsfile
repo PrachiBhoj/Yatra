@@ -11,16 +11,6 @@ pipeline {
     }
 
     stages {
-        stage('Checking JAVA, Maven,git') {
-            steps {
-                echo 'Code Compilation is In Progress!'
-                sh 'mvn --version'
-                sh 'java --version'
-                sh 'git --version'
-                sh 'whoami'
-                echo "this pipeline is running via Jenkins User"
-            }
-        }
         stage('Code Compilation') {
             steps {
                 echo 'Code Compilation is In Progress!'
