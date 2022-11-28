@@ -11,10 +11,9 @@ pipeline {
     }
 
     stages {
-        stage('Checking JAVA, Maven,git') {
+        stage('Checking JAVA,git') {
             steps {
                 echo 'Code Compilation is In Progress!'
-                sh 'mvn --version'
                 sh 'java --version'
                 sh 'git --version'
                 sh 'whoami'
