@@ -3,7 +3,7 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
-    agent { label ‘stackholderALinuxJava’ }
+    agent any
     tools {
         maven 'maven'
     }
@@ -112,5 +112,19 @@ pipeline {
             }
         }**/
     }
+    stage('Building & Tagging Docker Image') {
+
+        steps {
+
+            echo 'Starting Building Docker Image'
+             sh 'docker build -t prachibhoj/yatra1 .'
+             sh 'docker build -t yatra1 .'
+             echo 'Completed  Building Docker Image'
+
+        }
+
+    }
+
+
 }
 
