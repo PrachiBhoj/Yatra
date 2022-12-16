@@ -3,15 +3,27 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
+<<<<<<< HEAD
     agent any
+=======
+
+    agent any
+
+
+    agent { label ‘stackholderALinuxJava' }
+>>>>>>> b5a6c20df5af022a577e70bb3967d881dc5c63f6
     tools {
         maven 'maven'
     }
 
     stages {
-        stage('Checking JAVA,git') {
+        stage('Checking JAVA, Maven,git') {
             steps {
                 echo 'Code Compilation is In Progress!'
+                sh 'mvn --version'
+        stage('Checking JAVA,git') {
+            steps {
+                echo 'Code Compilation is In Progress!
                 sh 'java --version'
                 sh 'git --version'
                 sh 'whoami'
