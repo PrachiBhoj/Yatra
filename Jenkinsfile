@@ -57,8 +57,8 @@ pipeline {
         stage('Building & Tagging Docker Image') {
             steps {
                 echo 'Starting Building Docker Image'
-                sh 'docker build -t satyam88/cowinapp .'
-                sh 'docker build -t cowinapp .'
+                sh 'docker build -t prachibhoj/yatra .'
+                sh 'docker build -t yatra .'
                 echo 'Completed  Building Docker Image'
             }
         }
@@ -68,9 +68,9 @@ pipeline {
            steps {
               script {
                  withCredentials([string(credentialsId: 'dockerhubC', variable: 'dockerhubC')]){
-                 sh 'docker login docker.io -u satyam88 -p ${dockerhubC}'
+                 sh 'docker login docker.io -u prachibhoj -p ${dockerhubC}'
                  echo "Push Docker Image to DockerHub : In Progress"
-                 sh 'docker push satyam88/cowinapp:latest'
+                 sh 'docker push prachibhoj/yatra:latest'
                  echo "Push Docker Image to DockerHub : In Progress"
                  }
               }
@@ -86,7 +86,7 @@ pipeline {
                  echo "List the docker images present in local"
                  docker images
                  echo "Tagging the Docker Image: In Progress"
-                 docker tag cowinapp:latest 315080898736.dkr.ecr.ap-south-1.amazonaws.com/cowinapp:latest
+                 docker tag yatra:latest 315080898736.dkr.ecr.ap-south-1.amazonaws.com/yatra:latest
                  echo "Tagging the Docker Image: Completed"
                  echo "Push Docker Image to ECR : In Progress"
                  docker push 315080898736.dkr.ecr.ap-south-1.amazonaws.com/cowinapp:latest
