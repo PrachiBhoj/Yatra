@@ -69,28 +69,22 @@ pipeline {
             }
         }
        }
-
-
-
-
         stage(' Docker Image Push to Amazon ECR') {
            steps {
               script {
-                 withDockerRegistry([credentialsId:'ecr:ap-south-1:ecr-credentials', url:"https://315080898736.dkr.ecr.ap-south-1.amazonaws.com"]){
+                 withDockerRegistry([credentialsId:'ecr:us-east-1:ecr-credentials', url:" 991908010742.dkr.ecr.us-east-1.amazonaws.com]){
                  sh """
                  echo "List the docker images present in local"
                  docker images
                  echo "Tagging the Docker Image: In Progress"
-                 docker tag cowinapp:latest 315080898736.dkr.ecr.ap-south-1.amazonaws.com/cowinapp:latest
+                 docker tag yatra:latest 991908010742.dkr.ecr.us-east-1.amazonaws.com/yatra:latest
                  echo "Tagging the Docker Image: Completed"
                  echo "Push Docker Image to ECR : In Progress"
-                 docker push 315080898736.dkr.ecr.ap-south-1.amazonaws.com/cowinapp:latest
+                 docker push 991908010742.dkr.ecr.us-east-1.amazonaws.com/yatra:latest
                  echo "Push Docker Image to ECR : Completed"
                  """
                  }
               }
-           }
-        }
 
          /**
         stage('Upload the docker Image to Nexus') {
