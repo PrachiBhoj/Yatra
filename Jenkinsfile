@@ -85,7 +85,8 @@ pipeline {
                  """
                  }
               }
-
+           }
+        }
          /**
         stage('Upload the docker Image to Nexus') {
            steps {
@@ -108,7 +109,8 @@ pipeline {
 
         }/**
         stage('Deploy App to K8s Cluster') {
-          withKubeConfig([credentialsId: 'kuberneteskubeconfig', serverUrl: 'https://api.myprodcluster.in']) {
+          withKubeConfig([credentialsId: 'kuberneteskubeconfig', serverUrl: 'https://api.myprodcluster.in'])
+          {
                 sh 'kubectl apply -f kubernetes/prod'
             }
         }**/
