@@ -48,23 +48,30 @@ pipeline {
         stage('Building & Tagging Docker Image') {
             steps {
                 echo 'Starting Building Docker Image'
-                sh 'docker build -t satyam88/cowinapp .'
-                sh 'docker build -t cowinapp .'
+                sh 'docker build -t prachibhoj/yatra .'
+                sh 'docker build -t yatra .'
                 echo 'Completed  Building Docker Image'
             }
         }
          stage(' Docker push to Docker Hub') {
             steps {
                script {
-                  withCredentials([string(credentialsId: 'dockerhubC', variable: 'dockerhubC')]){
-                  sh 'docker login docker.io -u satyam88 -p ${dockerhubC}'
+
+                  withCredentials([string(credentialsId: 'DockerhubCred', variable: 'DockerhubCred')]){
+
+                  sh 'docker login docker.io -u prachibhoj -p ${DockerhubCred}'
+
                   echo "Push Docker Image to DockerHub : In Progress"
-                  sh 'docker push satyam88/cowinapp:latest'
+
+                  sh 'docker push prachibhoj/yatra:latest'
+
                   echo "Push Docker Image to DockerHub : In Progress"
+
                   }
                }
              }
          }
+
 
 
         stage(' Docker Image Push to Amazon ECR') {
