@@ -21,7 +21,7 @@ pipeline {
                 echo "this pipeline is running via Jenkins User"
             }
         }
-    }
+
         stage('Code Compilation') {
             steps {
                 echo 'Code Compilation is In Progress!'
@@ -170,3 +170,4 @@ pipeline {
         }**/
     }
 
+}
