@@ -117,8 +117,8 @@ pipeline {
                  sh 'kubectl apply -f kubernetes/prod'
              }
          }**/
-     }
- }
+
+
 
 
 
@@ -168,5 +168,5 @@ pipeline {
                 sh 'kubectl apply -f kubernetes/prod'
             }
         }**/
- }
+    }
 
