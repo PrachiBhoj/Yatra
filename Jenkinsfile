@@ -21,6 +21,7 @@ pipeline {
                 echo "this pipeline is running via Jenkins User"
             }
         }
+    }
         stage('Code Compilation') {
             steps {
                 echo 'Code Compilation is In Progress!'
@@ -161,12 +162,11 @@ pipeline {
                 sh 'kubectl apply -f Kubernetes/prod'
             }
 
-        }/**
+        /**
         stage('Deploy App to K8s Cluster') {
           withKubeConfig([credentialsId: 'kuberneteskubeconfig', serverUrl: 'https://api.myprodcluster.in']) {
                 sh 'kubectl apply -f kubernetes/prod'
             }
         }**/
-    }
-}
+ }
 
