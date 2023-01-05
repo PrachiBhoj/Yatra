@@ -88,19 +88,20 @@ pipeline {
            }
         }
 
-         /**
+
         stage('Upload the docker Image to Nexus') {
            steps {
               script {
                  withCredentials([usernamePassword(credentialsId: 'nexuscred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                 sh 'docker login http://13.233.166.175:8081/repository/letmefly-docker/ -u admin -p ${PASSWORD}'
+                 sh 'docker login http://172.31.80.113:8085/repository/yatra -u admin -p ${PASSWORD}'
                  echo "Push Docker Image to Nexus : In Progress"
-                 sh 'docker push http://172.31.46.38:8081/repository/linuxacademy:latest'
+                 sh 'docker tag http://172.31.80.113:8085/yatra:latest'
+                 sh 'docker push 172.31.80.113:8085/yatra'
                  echo "Push Docker Image to Nexus : Completed"
                  }
               }
             }
-        } **/
+        }
 
         stage('Deploy App to K8s Cluster') {
             steps {
