@@ -37,6 +37,22 @@ pipeline {
             }
         }
 
+        stage('Sonarqube') {
+            environment {
+                scannerHome = tool 'qube'
+            }
+            steps {
+                withSonarQubeEnv('sonar-server') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh 'mvn sonar:sonar'
+                }
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
+
         stage('Code Package') {
             steps {
                 echo 'Creating War Artifact'
