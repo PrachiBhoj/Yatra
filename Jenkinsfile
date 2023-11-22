@@ -37,6 +37,7 @@ pipeline {
             }
         }
 
+/**
         stage('Sonarqube') {
             environment {
                 scannerHome = tool 'qube'
@@ -51,7 +52,7 @@ pipeline {
                 }
             }
         }
-
+**/
 
         stage('Code Package') {
             steps {
@@ -104,7 +105,7 @@ pipeline {
            }
         }
         **/
-
+/**
         stage('Upload the docker Image to Nexus') {
            steps {
               script {
