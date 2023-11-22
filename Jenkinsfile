@@ -54,7 +54,7 @@ pipeline {
         }
 **/
 
-        stage('Code Package') {
+        stage('Code Package1') {
             steps {
                 echo 'Creating War Artifact'
                 sh 'java -version'
@@ -72,7 +72,7 @@ pipeline {
         }
 
 
-        stage(' Docker push to Docker Hub') {
+        stage(' Docker push to Docker Hub1') {
             steps {
                script {
                         withCredentials([string(credentialsId: 'DockerhubCred', variable: 'DockerhubCred')]){
