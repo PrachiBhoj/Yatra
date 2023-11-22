@@ -8,6 +8,6 @@ package com.example.yatra;
 public class hotel {
     @GetMapping("/myhotel")
     public String getData() {
-        return "Please book your hhhh Flight ticket, Choose Your Fav Airlines Indigo";
+        return "Please book your hhhhh Flight ticket, Choose Your Fav Airlines Indigo11";
     }
 }
